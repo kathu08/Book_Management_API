@@ -18,16 +18,16 @@
 // to get all books
 // to get specific books
 // to get list of books based on category
-// to get list of books based on languages [my task]
+// to get list of books based on languages
 
 // Authors
 // we need an API,
 // to get all authors 
-// to get specific authors [my task]
+// to get specific authors
 // to get list of books based on books
 
 // Publications
 // we need an API,
 // to get all publication
-// to get specific publication [my task]
-// to get list of publication based on book [my task]
+// to get specific publication
+// to get list of publication based on book
