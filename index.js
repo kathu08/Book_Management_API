@@ -301,7 +301,7 @@ Parameter     id
 Methods       PUT
 */
 booky.put("/publication/update/name/:id", (req, res) => {
-  database.publication.forEach((publication) => {
+  database.publications.forEach((publication) => {
     if (publication.id === parseInt(req.params.id)) {
       publication.name = req.body.newPublicationName;
       return;
@@ -309,6 +309,36 @@ booky.put("/publication/update/name/:id", (req, res) => {
   });
 
   return res.json({ publication: database.publication });
+});
+
+/* 
+Route         /publication/update/book
+Description   Update or add new book for a publication
+Access        PUBLIC
+Parameter     isbn
+Methods       PUT
+*/
+booky.put("/publication/update/book/:isbn", (req, res) => {
+  // update publication database
+  database.publication.forEach((publication) => {
+    if (publication.id === req.body.pubId) {
+      return publication.books.push(req.params.isbn);
+    }
+  });
+
+  // update book database
+  database.books.forEach((book) => {
+    if (book.ISBN === req.params.isbn) {
+      book.publications = req.body.pubId;
+      return;
+    }
+  });
+
+  return res.json({
+    books: database.books,
+    publications: database.publications,
+    message: "Successfully updated publication",
+  });
 });
 
 booky.listen(3000, () => console.log("Hey server is running!"));

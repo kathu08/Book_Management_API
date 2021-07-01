@@ -63,8 +63,10 @@
 
 // PUT
 // Update publication name using it's id ✅
-// Update or add books to publications
+// Update or add books to publications ✅
 
 // DELETE
 // delete a publication
 // delete a book from publication
+
+// How the server serves the request
