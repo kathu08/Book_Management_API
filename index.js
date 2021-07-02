@@ -1,13 +1,16 @@
 require("dotenv").config();
 
-
-
 // Frameworks
 const express = require("express");
 const mongoose = require("mongoose");
 
-// Database'
+// Database
 const database = require("./database/database");
+
+// Models
+const BookModels = require("./database/book");
+const AuthorModels = require("./database/author");
+const PublicationModels = require("./database/publication");
 
 // Initialization
 const booky = express();
