@@ -1,9 +1,13 @@
+require("dotenv").config();
+
+
+
 // Frameworks
 const express = require("express");
 const mongoose = require("mongoose");
 
 // Database'
-const database = require("./database");
+const database = require("./database/database");
 
 // Initialization
 const booky = express();
