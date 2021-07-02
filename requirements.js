@@ -13,6 +13,7 @@
 
 // what are all the APIs that we need .....
 
+// ........................................... //
 // books
 // we need an API,
 
@@ -30,8 +31,10 @@
 // Update or add new author ✅
 
 // DELETE
-// delete a book
-// delete an author
+// delete a book ✅
+// delete an author of a book ✅
+
+// ............................................... //
 
 // Authors
 // we need an API,
@@ -48,7 +51,9 @@
 // Update author name using it's id ✅
 
 // DELETE
-// delete an author
+// delete an author ✅
+
+// ............................................... //
 
 // Publications
 // we need an API,
@@ -59,14 +64,16 @@
 // to get list of publication based on book ✅
 
 // POST
-// Add new publication [my task] ✅
+// Add new publication ✅
 
 // PUT
 // Update publication name using it's id ✅
 // Update or add books to publications ✅
 
 // DELETE
-// delete a publication
-// delete a book from publication
+// delete a publication ✅
+// delete a book from publication ✅
+
+// ....................................... //
 
 // How the server serves the request

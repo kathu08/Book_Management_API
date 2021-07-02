@@ -12,5 +12,13 @@
     "nodemon": "^2.0.9"
   },
   "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kathu08/Book_Management_API.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kathu08/Book_Management_API/issues"
+  },
+  "homepage": "https://github.com/kathu08/Book_Management_API#readme",
   "description": ""
 }

@@ -1,4 +1,4 @@
-const books = [
+let books = [
   {
     ISBN: "12345Book",
     title: "Getting started with MERN",
@@ -8,6 +8,16 @@ const books = [
     author: [1, 2], // id of the author
     publications: [1],
     category: ["tech", "programming", "education", "thriller"],
+  },
+  {
+    ISBN: "12345New",
+    title: "Getting started with MERN Stack",
+    pubDate: "2021-07-08",
+    language: "en",
+    numPage: 250,
+    author: [1, 2], // id of the author
+    publications: [1, 2],
+    category: ["tech", "programming", "education"],
   },
 ];
 
@@ -29,6 +39,11 @@ const publication = [
         id: 1,
         name: "writex",
         books: ["12345Book"],
+    },
+    {
+        id: 2,
+        name: "codex",
+        books: ["12345New"],
     }
 ];
 
