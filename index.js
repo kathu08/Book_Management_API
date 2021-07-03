@@ -1,10 +1,12 @@
 require("dotenv").config();
 
-// Frameworks
+// import express framework
 const express = require("express");
+
+// import mongoose framework
 const mongoose = require("mongoose");
 
-// Database
+// import database
 const database = require("./database/database");
 
 // Models
@@ -267,20 +269,39 @@ Access        PUBLIC
 Parameter     isbn
 Methods       PUT
 */
-booky.put("/book/update/author/:isbn/:authorId", (req, res) => {
+booky.put("/book/update/author/:isbn", async (req, res) => {
   // update book database
-  database.books.forEach((book) => {
-    if (book.ISBN === req.params.isbn) {
-      return book.author.push(parseInt(req.params.authorId));
+  const updatedBook = await BookModel.findOneAndUpdate(
+    {
+      ISBN: req.params.isbn,
+    },
+    {
+      $addToSet: { author: req.body.newAuthor },
+    },
+    {
+      new: true,
     }
-  });
+  );
 
   // update author database
-  database.author.forEach((author) => {
-    if (author.id === parseInt(req.params.authorId)) {
-      return author.books.push(req.params.isbn);
+  const updatedAuthor = await AuthorModel.findOneAndUpdate(
+    {
+      id: req.body.newAuthor,
+    },
+    {
+      $addToSet: {
+        books: req.params.isbn,
+      },
+    },
+    {
+      new: true,
     }
-  });
+  );
+  // database.author.forEach((author) => {
+  //   if (author.id === parseInt(req.params.authorId)) {
+  //     return author.books.push(req.params.isbn);
+  //   }
+  // });
 
   return res.json({ books: database.books, author: database.author });
 });
