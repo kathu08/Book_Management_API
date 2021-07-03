@@ -393,13 +393,12 @@ Access        PUBLIC
 Parameter     isbn
 Methods       DELETE
 */
-booky.delete("/book/delete/:isbn", (req, res) => {
-  const updateBookDatabase = database.books.filter(
-    (book) => book.ISBN !== req.params.isbn
-  );
+booky.delete("/book/delete/:isbn", async (req, res) => {
+  const updateBookDatabase = await BookModel.findOneAndDelete({
+    ISBN: req.params.isbn,
+  });
 
-  database.books = updateBookDatabase;
-  return res.json({ books: database.books });
+  return res.json({ books: updateBookDatabase });
 });
 
 /* 
@@ -409,35 +408,41 @@ Access        PUBLIC
 Parameter     isbn
 Methods       DELETE
 */
-booky.delete("/book/delete/author/:isbn/:authorId", (req, res) => {
+booky.delete("/book/delete/author/:isbn/:authorId", async (req, res) => {
   // update book database
-  database.books.forEach((book) => {
-    if (book.ISBN === req.params.isbn) {
-      const newAuthorList = book.author.filter(
-        (author) => author !== parseInt(req.params.authorId)
-      );
-
-      book.author = newAuthorList;
-      return;
+  const updatedBook = await BookModel.findOneAndUpdate(
+    {
+      ISBN: req.params.isbn,
+    },
+    {
+      $pull: {
+        author: parseInt(req.params.authorId),
+      },
+    },
+    {
+      new: true,
     }
-  });
+  );
 
   //update the author database
-  database.author.forEach((author) => {
-    if (author.id === parseInt(req.params.authorId)) {
-      const newBookList = author.books.filter(
-        (book) => book !== req.params.isbn
-      );
-
-      author.books = newBookList;
-      return;
+  const updatedAuthor = await AuthorModel.findOneAndUpdate(
+    {
+      id: parseInt(req.params.authorId),
+    },
+    {
+      $pull: {
+        books: req.params.isbn,
+      },
+    },
+    {
+      new: true,
     }
-  });
+  );
 
   return res.json({
-    books: database.books,
+    books: updatedBook,
     message: "author deleted",
-    author: database.author,
+    author: updatedAuthor,
   });
 });
 
