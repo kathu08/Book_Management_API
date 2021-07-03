@@ -6,7 +6,7 @@ let books = [
     language: "en",
     numPage: 250,
     author: [1, 2], // id of the author
-    publications: [1],
+    publication: 1,
     category: ["tech", "programming", "education", "thriller"],
   },
   {
@@ -16,7 +16,7 @@ let books = [
     language: "en",
     numPage: 250,
     author: [1, 2], // id of the author
-    publications: [1, 2],
+    publication: 2,
     category: ["tech", "programming", "education"],
   },
 ];
